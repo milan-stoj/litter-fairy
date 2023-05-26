@@ -17,11 +17,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check-out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2.1.2
 
       # Install project
       - name: Install project
@@ -29,19 +29,16 @@ jobs:
 
       # Build project
       - name: Build project
-        run: npm run build
+        run: npm run-script build
 
       - name: Github Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: crazy-max/ghaction-github-pages@v3
         with:
-          folder: dist # The folder the action should deploy.
-        # uses: crazy-max/ghaction-github-pages@v3
-        # with:
-        #   # Build directory to deploy
-        #   target_branch: gh-pages
-        #   build_dir: dist
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Build directory to deploy
+          target_branch: gh-pages
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # this job step "deploys" the page.
   # deploy:
@@ -49,4 +46,4 @@ jobs:
   #   needs: build
   #   runs-on: ubuntu-latest
   #   steps:
-  # Push to Github Pages
+      # Push to Github Pages
