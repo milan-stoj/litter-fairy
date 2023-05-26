@@ -4,9 +4,9 @@ name: Portfolio
 # events but only for the main branch
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # this step "builds" the project
@@ -18,11 +18,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check-out repository
         uses: actions/checkout@v2
-        
+
       # Runs a single command using the runners shell
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.2
-        
+
       # Install project
       - name: Install project
         run: npm install
@@ -42,6 +42,6 @@ jobs:
         with:
           # Build directory to deploy
           target_branch: gh-pages
-          build_dir: dist
+          build_dir: /dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
